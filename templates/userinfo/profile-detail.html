@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<!--
+Template Name: Dodmond
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html lang="">
+<head>
+<title>{{ request.user }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all"> -->
+<!-- <link href="static/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="static/css/font-awesome.css" rel="stylesheet" type="text/css" media="all">
+<link href="static/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="static/css/custom-flexslider.css" rel="stylesheet" type="text/css" media="all">
+ -->
+<link href="{% static 'css/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all">
+<link href="{% static 'css/custom-flexslider.css' %}" rel="stylesheet" type="text/css" media="all">
+
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i> +91 (0124) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i>kushagra15049@iiitd.ac.in</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="{% url 'home' %}"><i class="fa fa-lg fa-home"></i></a></li>
+        <!-- <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register as owner</a></li>
+        <li><a href="register.html">Register as visitor</a></li>
+ -->
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+
+        <!-- <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'signup' %}">Register as owner</a></li>
+        <li><a href="{% url 'signup' %}">Register as visitor</a></li>
+ -->
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="{% url 'home' %}">Rent it Out</a></h1>
+      <p>We provide the best</p>
+    </div>
+    <div id="quickinfo" class="fl_right">
+      <ul class="nospace inline">
+        <li><strong>Akarsha:</strong><br>
+          2015010</li>
+        <li><strong>Kushagra:</strong><br>
+          2015049</li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ -->
+  </header>
+  <nav id="mainav" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul class="clear">
+      <li class="active"><a href="{% url 'home' %}">Home</a></li>
+      <li class="active"><a href="{% url 'home' %}">Contact Us</a></li>
+      <!-- <li><a href="#">P</a></li> -->
+      
+    </ul>
+    <!-- ################################################################################################ -->
+  </nav>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
+  <section id="breadcrumb" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <h6 class="heading">Welcome {{ request.user }}</h6>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <div class="sidebar one_third first"> 
+      
+        <br><br><br>
+      <div class="sdb_holder">
+        {% if profile %}
+          <h6>My Profile</h6>
+            <address>
+          <p>Profile image:</p>
+          {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" width="240" alt="profile_pic">
+          {% else %}
+            <img src="{% static 'images/nopic.png' %}" width="240" alt="profile_pic">
+          {% endif %}
+          <p>Profile name: {{profile.profile_name}}</p>
+          <p>Division: {{profile.division}}</p>
+          <p>District: {{profile.district}}</p>
+          <p>Area: {{profile.area}}</p>
+          <p>Address: {{profile.address}}</p>
+          <p>NID: {{profile.nid}}</p>
+          <p>Phone number: {{profile.phone}}</p>
+          <a href="{% url 'profile_edit' %}">Edit profile</a>
+        {% else %}
+          {{errmsg}}
+          <h3><a href="{% url 'profile_create' %}">Create </a>your profile</h3>
+        {% endif %}
+        </address>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <div class="content two_third"> 
+      <br><br><br><br><br>
+      <h1>My Properties</h1>
+    
+      {% for i in properties %}
+          <a href="{% url 'prop' i.id %}"> <b>Property</b>{{ i.id }}<br></a>
+          <b>Description: </b> {{ i.description }}<br> 
+          <b>Location: </b> {{ i.location }} <br>
+          <b>Price: </b> {{ i.price }}<br>
+          <b>Number of views: </b> {{ i.num_views }}<br><br><br>
+      {% endfor %}
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+
+  </main>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4 bgded overlay" style="background-image:url('images/demo/backgrounds/03.png');">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="center btmspace-50">
+      <h2 class="heading">Rent It Out</h2>
+      <nav>
+        <ul class="nospace inline pushright uppercase">
+          <li><a href="{% url 'home' %}"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="{% url 'home' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Contact</a></li>
+          </ul>
+      </nav>
+    </div>
+</div>
+    <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.backtotop.js' %}"></script>
+<script src="{% static 'js/jquery.mobilemenu.js' %}"></script>
+<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+ -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/jquery.backtotop.js"></script>
+<script src="static/js/jquery.mobilemenu.js"></script>
+<script src="static/js/jquery.flexslider-min.js"></script>
+
+</body>
+</html>

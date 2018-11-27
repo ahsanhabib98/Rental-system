@@ -52,8 +52,8 @@ def profile_edit(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            return redirect('/registration_app/profile_details/')
+            return redirect('profile_detail')
     else:
         form = ProfileForm(instance=profile)
-        return render(request,'userinfo/edit_profile.html',{'form':form})
+        return render(request,'userinfo/profile-edit.html',{'form':form})
 # Create your views here.
