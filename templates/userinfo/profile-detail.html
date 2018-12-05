@@ -136,13 +136,12 @@ Licence URI: http://www.os-templates.com/template-terms
       <br><br><br><br><br>
       <h1>My Properties</h1>
     
-      {% for i in properties %}
-          <a href="{% url 'prop' i.id %}"> <b>Property</b>{{ i.id }}<br></a>
-          <b>Description: </b> {{ i.description }}<br> 
-          <b>Location: </b> {{ i.location }} <br>
-          <b>Price: </b> {{ i.price }}<br>
-          <b>Number of views: </b> {{ i.num_views }}<br><br><br>
-      {% endfor %}
+      {% if property %}
+
+      {% else %}
+        <p>You have no property.</p>
+        <h1><a href="{% url 'property_create' %}">Add property</a></h1>
+      {% endif %}
     </div>
     <!-- ################################################################################################ -->
     <!-- ################################################################################################ -->
