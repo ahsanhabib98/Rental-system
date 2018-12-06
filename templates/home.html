@@ -147,27 +147,16 @@ Licence URI: http://www.os-templates.com/template-terms
   <div class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <ul class="nospace group figures">
-      <li class="one_third first">
-        <!-- <figure><img src="static/images/house1.jpg" alt=""> -->
-        <img src="{% static 'images/house1.jpg' %}" alt="">
+      {% for propery in propery %}
+        <li class="one_third">
+          <!-- <figure><img src="static/images/house4.jpg" alt=""> -->
+          <img src="{{ propery.photo.url }}" width="240" alt="property_pic">
 
-          <figcaption><a href="#">2 BHK</a></figcaption>
-        </figure>
-      </li>
-      <li class="one_third">
-        <!-- <figure><img src="static/images/house2.jpg" alt=""> -->
-        <img src="{% static 'images/house2.jpg' %}" alt="">
-
-          <figcaption><a href="#">3 BHK</a></figcaption>
-        </figure>
-      </li>
-      <li class="one_third">
-        <!-- <figure><img src="static/images/house4.jpg" alt=""> -->
-        <img src="{% static 'images/house4.jpg' %}" alt="">
-
-          <figcaption><a href="#">4 BHK</a></figcaption>
-        </figure>
-      </li>
+            <figcaption><a href="{% url 'property_detail' propery.id %}">{{propery.name}}</a></figcaption>
+            <p>Contact: 0{{propery.profile.phone}}</p>
+          </figure>
+        </li>
+      {% endfor %}
     </ul>
     <!-- ################################################################################################ -->
   </div>

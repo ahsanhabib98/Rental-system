@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from property.models import AddProperty
+
 
 def home(request):
-    return render(request, 'home.html')
+	propery = AddProperty.objects.all()[:3]
+	context = {
+		'propery': propery,
+	}
+	template = 'home.html'
+	return render(request, template, context)

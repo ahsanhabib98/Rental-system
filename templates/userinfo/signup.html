@@ -102,7 +102,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>Welcome |</strong> Login Form</h1>
+                            <h1><strong>Welcome |</strong> Signup Form</h1>
                             <div class="description">
                             	<p>
 	                            	Hi! You can login as an owner and put properties on rent or you can login as a tenant and pay rent to your landlords. 
@@ -122,7 +122,7 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-                            	<form action="" method="post">
+                            	<form action="" method="POST" action="">
 							      {% csrf_token %}
 							      {{form.as_p}}
 							      <button type="submit" class="btn">SignUp</button>

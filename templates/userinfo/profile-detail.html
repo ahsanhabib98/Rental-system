@@ -125,7 +125,7 @@ Licence URI: http://www.os-templates.com/template-terms
           <p>Phone number: {{profile.phone}}</p>
           <a href="{% url 'profile_edit' %}">Edit profile</a>
         {% else %}
-          {{errmsg}}
+          <h1>You have no profile.</h1>
           <h3><a href="{% url 'profile_create' %}">Create </a>your profile</h3>
         {% endif %}
         </address>
@@ -136,7 +136,21 @@ Licence URI: http://www.os-templates.com/template-terms
       <br><br><br><br><br>
       <h1>My Properties</h1>
     
-      {% if property %}
+      {% if propery %}
+
+        <ul class="nospace group figures">
+        {% for propery in propery %}
+          <li class="one_third">
+            <!-- <figure><img src="static/images/house4.jpg" alt=""> -->
+            <img src="{{ propery.photo.url }}" width="240" alt="property_pic">
+
+              <figcaption><a href="{% url 'property_detail' propery.id %}">{{propery.name}}</a></figcaption>
+              <p>Contact: 0{{propery.profile.phone}}</p>
+            </figure>
+          </li>
+        {% endfor %}
+      </ul>
+
 
       {% else %}
         <p>You have no property.</p>

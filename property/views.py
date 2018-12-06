@@ -24,7 +24,7 @@ def property_detail(request, id=None):
 		'propery': propery,
 	}
 
-	return render(request, 'property/property-detail', context)
+	return render(request, 'property/property-detail.html', context)
 
 def property_edit(request, id=None):
 	propery = AddProperty.objects.get(id=id)
